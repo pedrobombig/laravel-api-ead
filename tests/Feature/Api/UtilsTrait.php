@@ -7,7 +7,7 @@ use App\Models\User;
 
 trait UtilsTrait
 {
-    public function createTokenUser()
+    public function createTokenUser(): string
     {
         $user = User::factory()->create();
         $token =  $user->createToken('desktop')->plainTextToken;
@@ -15,7 +15,7 @@ trait UtilsTrait
         return $token;
     }
 
-    public function defaultHeaders()
+    public function defaultHeaders(): array
     {
         $token = $this->createTokenUser();
 
