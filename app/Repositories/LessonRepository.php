@@ -28,7 +28,6 @@ class LessonRepository
     public function getLessonById(String $identify)
     {
         return $this->entity
-            ->with('supports.replies')
             ->findOrFail($identify);
     }
 
