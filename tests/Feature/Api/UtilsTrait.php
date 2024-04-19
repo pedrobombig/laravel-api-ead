@@ -7,10 +7,22 @@ use App\Models\User;
 
 trait UtilsTrait
 {
-    public function createTokenUser(): string
+    public function createUser(): User
     {
         $user = User::factory()->create();
-        $token =  $user->createToken('desktop')->plainTextToken;
+
+        return $user;
+    }
+
+    public function createToken(User $user): string
+    {
+        return $user->createToken('desktop')->plainTextToken;
+    }
+
+    public function createTokenUser(): string
+    {
+        $user = $this->createUser();
+        $token =  $this->createToken($user);
 
         return $token;
     }
