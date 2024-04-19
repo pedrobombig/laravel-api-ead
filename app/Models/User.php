@@ -37,14 +37,14 @@ class User extends Authenticatable
         ];
     }
 
-    public function supports()
-    {
-        return $this->hasMany(Support::class);
-    }
-
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    public function supports()
+    {
+        return $this->hasMany(Support::class);
     }
 
     public function views()

@@ -14,9 +14,9 @@ class Lesson extends Model
     protected $keyType = 'uuid';
     protected $fillable = ['name', 'description', 'video'];
 
-    public function module()
+    public function supports()
     {
-        return $this->belongsTo(Module::class);
+        return $this->belongsTo(Support::class);
     }
 
     public function views()

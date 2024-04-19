@@ -25,7 +25,7 @@ class ReplySupportRepository
             ->create([
                 'support_id' => $data['support'],
                 'description' => $data['description'],
-                'user_id' => $user->id
+                'user_id' => $user->id,
             ]);
     }
 }

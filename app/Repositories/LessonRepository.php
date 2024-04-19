@@ -21,12 +21,14 @@ class LessonRepository
     {
         return $this->entity
             ->where('module_id', $moduleId)
+            ->with('supports.replies')
             ->get();
     }
 
     public function getLessonById(String $identify)
     {
         return $this->entity
+            ->with('supports.replies')
             ->findOrFail($identify);
     }
 

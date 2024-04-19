@@ -23,9 +23,4 @@ class Module extends Model
     {
         return $this->hasMany(Lesson::class);
     }
-
-    public function supports()
-    {
-        return $this->hasMany(Support::class);
-    }
 }
