@@ -11,19 +11,14 @@ use Illuminate\Support\Facades\Password;
 
 class ResetPasswordController extends Controller
 {
-    private function getResponseStatus($status)
-    {
-        return $status === Password::PASSWORD_RESET
-            ? response()->json(['status' => __($status)])
-            : response()->json(['email' => [__($status)]], 422);
-    }
-
     public function sendResetLink(Request $request)
     {
         $request->validate(['email' => 'required|email']);
         $status = Password::sendResetLink($request->only('email'));
 
-        return $this->getResponseStatus($status);
+        return $status === Password::RESET_LINK_SENT
+            ? response()->json(['status' => __($status)])
+            : response()->json(['email' => __($status)], 422);
     }
 
 
@@ -48,6 +43,8 @@ class ResetPasswordController extends Controller
             }
         );
 
-        return $this->getResponseStatus($status);
+        return $status === Password::PASSWORD_RESET
+            ? response()->json(['status' => __($status)])
+            : response()->json(['email' => [__($status)]], 422);
     }
 }
