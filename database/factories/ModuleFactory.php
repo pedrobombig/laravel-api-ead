@@ -12,8 +12,10 @@ class ModuleFactory extends Factory
 
     public function definition(): array
     {
+        $courseId = fake()->randomElement(Course::pluck('id'));
+
         return [
-            'course_id' => Course::factory(),
+            'course_id' => $courseId,
             'name' => fake()->unique()->name(),
         ];
     }

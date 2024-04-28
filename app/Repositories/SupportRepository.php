@@ -23,6 +23,8 @@ class SupportRepository
 
     public function getSupports(array $filters = [])
     {
+        $filters['user'] = true;
+
         return $this->entity
             ->where(function ($query) use ($filters) {
                 if (isset($filters['lesson'])) {
@@ -46,7 +48,7 @@ class SupportRepository
             })
             ->with('replies')
             ->orderBy('updated_at')
-            ->get();
+            ->paginate(10);
     }
 
     public function getMySupports(array $filters = [])

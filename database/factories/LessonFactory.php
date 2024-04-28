@@ -14,13 +14,14 @@ class LessonFactory extends Factory
     public function definition(): array
     {
         $name =  fake()->unique()->name();
+        $moduleId = fake()->randomElement(Module::pluck('id'));
 
         return [
-            'module_id' => Module::factory(),
+            'module_id' => $moduleId,
             'name' => $name,
             'description' => fake()->unique()->sentence(20),
             'url' => Str::slug($name),
-            'video' => Str::random()
+            'video' => 'https://www.youtube.com/embed/a3ICNMQW7Ok' //random example video
         ];
     }
 }
